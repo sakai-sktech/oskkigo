@@ -1,3 +1,15 @@
+#!/bin/bash
+
+#ORCA
+#大阪国保の記号を登録するスクリプト
+#更新用SQLスクリプト等はgithubにおいてあります。
+#https://github.com/sakai-sktech/oskkigo.git
+
+git clone https://github.com/sakai-sktech/oskkigo.git
+
+cd oskkigo
+
+sudo -u orca psql -q -d orca >> result.log << _EOF
 UPDATE master.tbl_hknjainf_master SET kigo='堺国' where hknjanum='270025';
 UPDATE master.tbl_hknjainf_master SET kigo='岸国' where hknjanum='270033';
 UPDATE master.tbl_hknjainf_master SET kigo='豊国' where hknjanum='270041';
@@ -82,3 +94,5 @@ UPDATE master.tbl_hknjainf_master SET kigo='阪国住' where hknjanum='274233';
 UPDATE master.tbl_hknjainf_master SET kigo='阪国東住' where hknjanum='274241';
 UPDATE master.tbl_hknjainf_master SET kigo='阪国平' where hknjanum='274258';
 UPDATE master.tbl_hknjainf_master SET kigo='阪国西成' where hknjanum='274266';
+\q
+_EOF
